@@ -2,6 +2,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
 import Header from "@/components/header";
+import {ClerkProvider} from "@clerk/nextjs";
+import { neobrutalism } from "@clerk/themes";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -13,6 +15,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    <ClerkProvider appearance={{baseTheme : neobrutalism}}>
     <html
       lang="en"
       suppressHydrationWarning={true}
@@ -40,5 +43,6 @@ export default function RootLayout({ children }) {
           </footer>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
