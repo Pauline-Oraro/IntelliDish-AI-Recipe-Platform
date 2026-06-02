@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
-import Header from "@/components/header";
+import Header from "@/components/Header";
 import {ClerkProvider} from "@clerk/nextjs";
 import { neobrutalism } from "@clerk/themes";
 
