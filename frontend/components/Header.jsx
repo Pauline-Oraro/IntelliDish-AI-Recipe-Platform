@@ -4,19 +4,20 @@ import { Button } from "./ui/button";
 import Image from 'next/image';
 import Link from 'next/link';
 import { Cookie, Refrigerator } from 'lucide-react';
+import { checkUser } from "@/lib/checkUser";
 
-const Header = () => {
+export default async function Header() {
+  const user = await checkUser();
+  
   return (
     <header className="fixed top-0 w-full border-b border-stone-200 bg-stone-50/80 backdrop-blur-md z-50 supports-backdrop-filter:bg-stone-50/60">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
-        logo
-        <Image
-            src="/orange-logo.png"
-            alt="intellidish logo"
-            width={60}
-            height={60}
-            className="w-16"
-        />
+        <Link
+          href={user ? "/dashboard" : "/"}
+          className="flex items-center gap-2 group"
+        >
+          intellidish
+        </Link>
 
         <div className="hidden md:flex items-center space-x-8 text-sm font-medium text-stone-600">
           <Link
@@ -36,12 +37,12 @@ const Header = () => {
         </div>
 
       <div className='flex items-center space-x-4'>
-
         <SignedIn>
           <UserButton/>
         </SignedIn>
 
           <SignedOut>
+
             <SignInButton mode="modal">
               <Button
                 variant="ghost"
@@ -50,11 +51,13 @@ const Header = () => {
                 Sign In
               </Button>
             </SignInButton>
+
             <SignUpButton mode="modal">
               <Button variant="primary" className="rounded-full px-6">
                 Get Started
               </Button>
             </SignUpButton>
+
           </SignedOut>
       </div>
       
@@ -63,4 +66,3 @@ const Header = () => {
   )
 }
 
-export default Header
