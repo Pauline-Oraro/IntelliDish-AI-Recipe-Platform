@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Cookie, Refrigerator } from 'lucide-react';
 import { checkUser } from "@/lib/checkUser";
+import UserDropdown from './UserDropdown';
 
 export default async function Header() {
   const user = await checkUser();
@@ -38,7 +39,7 @@ export default async function Header() {
 
       <div className='flex items-center space-x-4'>
         <SignedIn>
-          <UserButton/>
+          <UserDropdown/>
         </SignedIn>
 
           <SignedOut>
